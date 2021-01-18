@@ -1,0 +1,37 @@
+CREATE DATABASE EJERCICIO_1;
+USE EJERCICIO_1;
+GO
+USE EJERCICIO_1;
+GO
+CREATE TABLE Despachos (
+	Numero INT PRIMARY KEY NOT NULL,
+	Capacidad INT
+)
+CREATE TABLE Directores (
+	DNI VARCHAR(8) PRIMARY KEY NOT NULL,
+	NomApels NVARCHAR(255),
+	DNIJefe VARCHAR(8) FOREIGN KEY REFERENCES Directores(DNI),
+	Despacho INT FOREIGN KEY REFERENCES Despachos(Numero)
+)
+INSERT INTO Despachos VALUES
+	(1, 31),
+	(2, 32),
+	(3, 33),
+	(4, 34),
+	(5, 35),
+	(6, 36),
+	(7, 37),
+	(8, 38),
+	(9, 39),
+	(10, 40);
+INSERT INTO Directores VALUES
+	('00000001', 'Fulanito1', null, 1),
+	('00000002', 'Fulanito2', '00000001', 2),
+	('00000003', 'Fulanito3', '00000002', 3),
+	('00000004', 'Fulanito4', '00000002', 4),
+	('00000005', 'Fulanito5', '00000002', 5),
+	('00000006', 'Fulanito6', '00000001', 6),
+	('00000007', 'Fulanito7', '00000005', 7),
+	('00000008', 'Fulanito8', null, 8),
+	('00000009', 'Fulanito9', '00000003', 9),
+	('00000010', 'Fulanito10', '00000003', 1);

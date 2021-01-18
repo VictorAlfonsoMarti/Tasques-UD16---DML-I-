@@ -1,0 +1,52 @@
+CREATE DATABASE EJERCICIO_2;
+USE EJERCICIO_2;
+GO
+CREATE TABLE Piezas (
+	Codigo INT PRIMARY KEY IDENTITY(1,1),
+	Nombre NVARCHAR(100)
+)
+CREATE TABLE Proveedores (
+	Id CHAR(4) PRIMARY KEY NOT NULL,
+	Nombre NVARCHAR(100)
+)
+CREATE TABLE Suministra (
+	CodigoPieza INT FOREIGN KEY REFERENCES Piezas(Codigo) ON DELETE NO ACTION ON UPDATE CASCADE,
+	IdProveedor CHAR(4) FOREIGN KEY REFERENCES Proveedores(Id) ON DELETE NO ACTION ON UPDATE CASCADE,
+	Precio INT,
+	CONSTRAINT PK_Suministra PRIMARY KEY (CodigoPieza, IdProveedor)
+)
+
+INSERT INTO Piezas VALUES 
+	('Pieza1'),
+	('Pieza2'),
+	('Pieza3'),
+	('Pieza4'),
+	('Pieza5'),
+	('Pieza6'),
+	('Pieza7'),
+	('Pieza8'),
+	('Pieza9'),
+	('Pieza10');
+INSERT INTO Proveedores VALUES 
+	(1, 'Proveedor 1'),
+	(2, 'Proveedor 2'),
+	(3, 'Proveedor 3'),
+	(4, 'Proveedor 4'),
+	(5, 'Proveedor 5'),
+	(6, 'Proveedor 6'),
+	(7, 'Proveedor 7'),
+	(8, 'Proveedor 8'),
+	(9, 'Proveedor 9'),
+	(10, 'Proveedor 10');
+INSERT INTO Suministra VALUES 
+	(10,1,101),
+	(9,2,102),
+	(8,3,103),
+	(7,4,104),
+	(6,5,105),
+	(5,6,106),
+	(4,7,107),
+	(3,8,108),
+	(2,9,109),
+	(1,10,110);
+

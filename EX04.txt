@@ -1,0 +1,67 @@
+CREATE DATABASE EJERCICIO_4;
+USE EJERCICIO_4;
+GO
+CREATE TABLE Productos (
+	Codigo INT PRIMARY KEY IDENTITY(1,1),
+	Nombre NVARCHAR(100),
+	Precio INT
+)
+CREATE TABLE Cajeros (
+	Codigo INT PRIMARY KEY IDENTITY(1,1),
+	NomApels NVARCHAR(255)
+)
+CREATE TABLE Maquinas_Registradoras (
+	Codigo INT PRIMARY KEY IDENTITY(1,1),
+	Piso INT
+)
+CREATE TABLE Venta (
+	Cajero INT FOREIGN KEY REFERENCES Cajeros(Codigo),
+	Maquina INT FOREIGN KEY REFERENCES Maquinas_Registradoras(Codigo),
+	Producto INT FOREIGN KEY REFERENCES Productos(Codigo),
+	CONSTRAINT PK_Venta PRIMARY KEY (Cajero, Maquina, Producto)
+)
+INSERT INTO Productos VALUES 
+	('Producto 1', 31),
+	('Producto 2', 32),
+	('Producto 3', 33),
+	('Producto 4', 34),
+	('Producto 5', 35),
+	('Producto 6', 36),
+	('Producto 7', 37),
+	('Producto 8', 38),
+	('Producto 9', 39),
+	('Producto 10', 40);
+INSERT INTO Cajeros VALUES 
+	('Cajero 1'),
+	('Cajero 2'),
+	('Cajero 3'),
+	('Cajero 4'),
+	('Cajero 5'),
+	('Cajero 6'),
+	('Cajero 7'),
+	('Cajero 8'),
+	('Cajero 9'),
+	('Cajero 10');
+INSERT INTO Maquinas_Registradoras VALUES 
+	(41),
+	(28),
+	(47),
+	(65),
+	(32),
+	(54),
+	(2),
+	(43),
+	(60),
+	(1);
+INSERT INTO Venta VALUES 
+	(5,3,1),
+	(4,5,2),
+	(3,6,3),
+	(2,8,10),
+	(1,7,9),
+	(10,9,2),
+	(9,10,8),
+	(8,1,7),
+	(7,2,6),
+	(6,4,2);
+

@@ -1,0 +1,50 @@
+CREATE DATABASE EJERCICIO_3
+USE EJERCICIO_3;
+GO
+CREATE TABLE Cientificos (
+	DNI VARCHAR(8) PRIMARY KEY,
+	NomApels NVARCHAR(255)
+)
+CREATE TABLE Proyecto (
+	Id CHAR(4) PRIMARY KEY,
+	Nombre NVARCHAR(255),
+	Horas INT
+)
+CREATE TABLE Asignado_a (
+	Cientifico VARCHAR(8) FOREIGN KEY REFERENCES Cientificos(DNI) ON DELETE NO ACTION ON UPDATE CASCADE,
+	Proyecto CHAR(4) FOREIGN KEY REFERENCES Proyecto(Id) ON DELETE NO ACTION ON UPDATE CASCADE,
+	CONSTRAINT PK_Asignado_a PRIMARY KEY (Cientifico, Proyecto)
+)
+INSERT INTO Cientificos VALUES
+	('10000000', 'Menganito 1'),
+	('20000000', 'Menganito 2'),
+	('30000000', 'Menganito 3'),
+	('40000000', 'Menganito 4'),
+	('50000000', 'Menganito 5'),
+	('60000000', 'Menganito 6'),
+	('70000000', 'Menganito 7'),
+	('80000000', 'Menganito 8'),
+	('90000000', 'Menganito 9'),
+	('11000000', 'Menganito 10');
+INSERT INTO Proyecto VALUES
+	('0001', 'Proyecto X', 20),
+	('0002', 'Proyecto Y', 21),
+	('0003', 'Proyecto Z', 22),
+	('0004', 'Proyecto A', 23),
+	('0005', 'Proyecto B', 24),
+	('0006', 'Proyecto C', 25),
+	('0007', 'Proyecto D', 26),
+	('0008', 'Proyecto E', 27),
+	('0009', 'Proyecto H', 28),
+	('0010', 'Proyecto K', 29);
+INSERT INTO Asignado_a VALUES
+	('60000000', '0001'),
+	('50000000', '0002'),
+	('30000000', '0003'),
+	('20000000', '0004'),
+	('10000000', '0005'),
+	('40000000', '0006'),
+	('70000000', '0007'),
+	('80000000', '0008'),
+	('90000000', '0009'),
+	('11000000', '0010');

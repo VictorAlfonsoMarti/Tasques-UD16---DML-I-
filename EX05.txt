@@ -1,0 +1,70 @@
+CREATE DATABASE EJERCICIO_5;
+USE EJERCICIO_5;
+GO
+CREATE TABLE Facultad (
+	Codigo INT PRIMARY KEY,
+	Nombre NVARCHAR(100)
+)
+CREATE TABLE Investigadores (
+	DNI VARCHAR(8) PRIMARY KEY,
+	NomApels NVARCHAR(255),
+	Facultad INT FOREIGN KEY REFERENCES Facultad(Codigo) ON DELETE NO ACTION ON UPDATE CASCADE
+)
+CREATE TABLE Equipos (
+	NumSerie CHAR(4) PRIMARY KEY,
+	Nombre NVARCHAR(100),
+	Facultad INT FOREIGN KEY REFERENCES Facultad(Codigo) ON DELETE NO ACTION ON UPDATE CASCADE
+)
+CREATE TABLE Reserva (
+	DNI VARCHAR(8) FOREIGN KEY REFERENCES Investigadores(DNI) ON DELETE NO ACTION ON UPDATE CASCADE,
+	NumSerie CHAR(4) FOREIGN KEY REFERENCES Equipos(NumSerie) ON DELETE NO ACTION ON UPDATE CASCADE,
+	Comienzo DATETIME,
+	Fin DATETIME,
+	CONSTRAINT PK_Reserva PRIMARY KEY (DNI, NumSerie)
+)
+INSERT INTO Facultad VALUES 
+	(1, 'Facutlad 1'),
+	(2, 'Facutlad 2'),
+	(3, 'Facutlad 3'),
+	(4, 'Facutlad 4'),
+	(5, 'Facutlad 5'),
+	(6, 'Facutlad 6'),
+	(7, 'Facutlad 7'),
+	(8, 'Facutlad 8'),
+	(9, 'Facutlad 9'),
+	(10, 'Facutlad 10');
+INSERT INTO Investigadores VALUES 
+	('00000001', 'Señor X', 1),
+	('00000002', 'Señor Y', 2),
+	('00000003', 'Señor Z', 3),
+	('00000004', 'Señor A', 4),
+	('00000005', 'Señor B', 5),
+	('00000006', 'Señor C', 6),
+	('00000007', 'Señor D', 7),
+	('00000008', 'Señor E', 8),
+	('00000009', 'Señor F', 9),
+	('00000010', 'Señor Negro', 10);
+INSERT INTO Equipos VALUEs 
+	('000A', 'Equipo 1', 10),
+	('000B', 'Equipo 2', 9),
+	('000C', 'Equipo 3', 8),
+	('000D', 'Equipo 4', 7),
+	('000E', 'Equipo 5', 6),
+	('000F', 'Equipo 6', 5),
+	('000G', 'Equipo 7', 4),
+	('000H', 'Equipo 8', 3),
+	('000I', 'Equipo 9', 2),
+	('000J', 'Equipo 10', 1);
+INSERT INTO Reserva VALUES 
+	('00000001','000J', '2001-01-01','2001-02-09'),
+	('00000002','000I', '2002-02-02','2002-03-08'),
+	('00000003','000H', '2003-03-03','2003-04-07'),
+	('00000004','000G', '2004-04-04','2004-05-06'),
+	('00000005','000F', '2005-05-05','2005-06-05'),
+	('00000006','000E', '2006-06-06','2006-07-04'),
+	('00000007','000D', '2007-07-07','2007-08-03'),
+	('00000008','000C', '2008-08-08','2008-09-02'),
+	('00000009','000B', '2009-09-09','2009-01-01'),
+	('00000010','000A', '2010-10-10','2011-11-11');
+
+
